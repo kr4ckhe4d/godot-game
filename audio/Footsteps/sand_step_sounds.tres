@@ -1,0 +1,15 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=5 format=3 uid="uid://ck6uca0csp7rd"]
+
+[ext_resource type="AudioStream" uid="uid://dqtybp73smnqg" path="res://audio/Footsteps/sand_step_1.wav" id="1_k14dl"]
+[ext_resource type="AudioStream" uid="uid://dst5dq3cv1whx" path="res://audio/Footsteps/sand_step_2.wav" id="2_xvkik"]
+[ext_resource type="AudioStream" uid="uid://cbdpklke0x2m8" path="res://audio/Footsteps/sand_step_3.wav" id="3_2c7gd"]
+[ext_resource type="AudioStream" uid="uid://din1c86r4fsug" path="res://audio/Footsteps/sand_step_4.wav" id="4_ydetj"]
+
+[resource]
+random_pitch = 1.2
+random_volume_offset_db = 0.15
+streams_count = 4
+stream_0/stream = ExtResource("1_k14dl")
+stream_1/stream = ExtResource("2_xvkik")
+stream_2/stream = ExtResource("3_2c7gd")
+stream_3/stream = ExtResource("4_ydetj")

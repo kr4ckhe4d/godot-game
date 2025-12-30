@@ -1,8 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://cw8f4ivl4oaro"]
+[gd_scene load_steps=13 format=3 uid="uid://cw8f4ivl4oaro"]
 
 [ext_resource type="PackedScene" uid="uid://8p1yvuc4go0h" path="res://scenes/player.tscn" id="1_u80x2"]
 [ext_resource type="PackedScene" uid="uid://fp81052gcj6" path="res://meshes/test_level.glb" id="2_u80x2"]
 [ext_resource type="AudioStream" uid="uid://wuv4mfx7yodn" path="res://audio/Music/temple.mp3" id="3_bodal"]
+[ext_resource type="Script" uid="uid://bsqokqqtaj5l6" path="res://scripts/worldsound.gd" id="3_tn317"]
+[ext_resource type="AudioStream" uid="uid://dgdxffof7mncs" path="res://audio/Footsteps/stone_step_sounds.tres" id="4_m8nf6"]
+[ext_resource type="AudioStream" uid="uid://cjrte3byt5s2h" path="res://audio/Footsteps/wood_step_sounds.tres" id="5_pgjjs"]
+[ext_resource type="AudioStream" uid="uid://ck6uca0csp7rd" path="res://audio/Footsteps/sand_step_sounds.tres" id="6_1nvso"]
+[ext_resource type="AudioStream" uid="uid://bwb8w1grxwj0u" path="res://audio/Footsteps/dirt_step_sounds.tres" id="7_gsp51"]
+[ext_resource type="AudioStream" uid="uid://bbvx8o1ien2s1" path="res://audio/Footsteps/grass_step_sounds.tres" id="8_r8uic"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ewcy1"]
 sky_top_color = Color(0.1635789, 0.4464935, 0.760536, 1)
@@ -33,6 +39,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.019866109, 0)
 
 [node name="test_level" parent="." instance=ExtResource("2_u80x2")]
 
+[node name="StaticBody3D" parent="test_level/level" index="0"]
+script = ExtResource("3_tn317")
+foorstep_sounds = ExtResource("4_m8nf6")
+
+[node name="StaticBody3D" parent="test_level/wood" index="0"]
+script = ExtResource("3_tn317")
+foorstep_sounds = ExtResource("5_pgjjs")
+
+[node name="StaticBody3D" parent="test_level/snow" index="0"]
+script = ExtResource("3_tn317")
+foorstep_sounds = ExtResource("6_1nvso")
+
+[node name="StaticBody3D" parent="test_level/grass" index="0"]
+script = ExtResource("3_tn317")
+foorstep_sounds = ExtResource("7_gsp51")
+
+[node name="StaticBody3D" parent="test_level/dirt" index="0"]
+script = ExtResource("3_tn317")
+foorstep_sounds = ExtResource("8_r8uic")
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_bodal")
 autoplay = true
+bus = &"Music"
+
+[editable path="test_level"]

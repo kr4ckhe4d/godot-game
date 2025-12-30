@@ -6,7 +6,7 @@ extends CharacterBody3D
 # Tracks the previous lean value for smooth interpolation during running
 var last_lean := 0.0
 # Reference to the AnimationTree for controlling animation state machine
-@onready var anima_tree: AnimationTree = $AnimationTree
+@onready var anim_tree: AnimationTree = $AnimationTree
 # Reference to the AnimationPlayer that actually plays the animations
 @onready var anim_player: AnimationPlayer = $mesh/AnimationPlayer
 # Movement speed in units per second (configurable in editor)
@@ -59,24 +59,24 @@ func _physics_process(delta: float) -> void:
 	# Determine which animation state to play based on movement conditions
 	if not is_on_floor():
 		# Play falling animation when in the air
-		anima_tree.set("parameters/movement/transition_request", "fall")
+		anim_tree.set("parameters/movement/transition_request", "fall")
 	elif current_speed > RUN_SPEED:
 		# Play running animation and apply side-leaning based on input direction
-		anima_tree.set("parameters/movement/transition_request", "run")
+		anim_tree.set("parameters/movement/transition_request", "run")
 		# Calculate how much the character leans left/right based on input
 		var lean := direction.dot(global_basis.x)
 		# Smoothly interpolate lean value to avoid sharp transitions
 		last_lean = lerpf(last_lean, lean, 0.3)
-		anima_tree.set("parameters/run_lean/add_amount", last_lean)
+		anim_tree.set("parameters/run_lean/add_amount", last_lean)
 	elif current_speed > 0.1:
 		# Play walking animation with speed-based animation playback rate
-		anima_tree.set("parameters/movement/transition_request", "walk")
+		anim_tree.set("parameters/movement/transition_request", "walk")
 		# Scale walk animation speed based on actual movement speed (0.5x to 1.75x)
 		var walk_speed := lerpf(0.5, 1.75, current_speed / RUN_SPEED)
-		anima_tree.set("parameters/walk_speed/scale", walk_speed)
+		anim_tree.set("parameters/walk_speed/scale", walk_speed)
 	else:
 		# Play idle animation when not moving
-		anima_tree.set("parameters/movement/transition_request", "idle")
+		anim_tree.set("parameters/movement/transition_request", "idle")
 
 # Rotate the character to face the given direction
 # Uses lerp_angle for smooth, gradual rotation instead of snapping
