@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cw8f4ivl4oaro"]
+[gd_scene load_steps=7 format=3 uid="uid://cw8f4ivl4oaro"]
 
 [ext_resource type="PackedScene" uid="uid://8p1yvuc4go0h" path="res://scenes/player.tscn" id="1_u80x2"]
 [ext_resource type="PackedScene" uid="uid://fp81052gcj6" path="res://meshes/test_level.glb" id="2_u80x2"]
+[ext_resource type="AudioStream" uid="uid://wuv4mfx7yodn" path="res://audio/Music/temple.mp3" id="3_bodal"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ewcy1"]
 sky_top_color = Color(0.1635789, 0.4464935, 0.760536, 1)
@@ -31,3 +32,7 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.019866109, 0)
 
 [node name="test_level" parent="." instance=ExtResource("2_u80x2")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bodal")
+autoplay = true
